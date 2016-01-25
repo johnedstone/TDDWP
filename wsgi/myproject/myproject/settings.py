@@ -1,4 +1,5 @@
 import os
+
 DJ_PROJECT_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.dirname(DJ_PROJECT_DIR)
 WSGI_DIR = os.path.dirname(BASE_DIR)
