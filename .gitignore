@@ -5,5 +5,5 @@
 *~
 .project
 .pydevproject
-env-3.4
+env*
 __pycache__
