@@ -4,4 +4,5 @@
 # it could be python, php, ruby, etc.
 
 # Run test scripts here, maybe
-python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py test --top-level-directory "$BASE_DIR"
+echo python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py test --top-level-directory "$BASE_DIR"
+sleep 10
