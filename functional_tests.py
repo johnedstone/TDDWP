@@ -21,6 +21,8 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Edith checks out the new app
         self.browser.get('http://localhost:8000')
+        # import time
+        # time.sleep(10)
 
         # She notices the page title and header mention to-do lists
         self.assertIn('To-Do', self.browser.title)
@@ -39,6 +41,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # When she hits enter the page updates and now the page lists her first item
         inputbox.send_keys(Keys.ENTER)
+
         self.check_for_row_in_list_table('1: Buy peacock feathers')
 
         # There is stll a text box inviting her to add another item
