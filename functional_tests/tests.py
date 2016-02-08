@@ -67,7 +67,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
-        self.assertNotIn('mage a fly', page_text)
+        self.assertNotIn('make a fly', page_text)
 
         # Francis starts a new list by entering a new item.  He
         # is less interesting than Edith
@@ -76,7 +76,7 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys(Keys.ENTER)
 
         # Francis gets his own unique URL
-        fancis_list_url = self.browser.current_url
+        francis_list_url = self.browser.current_url
         self.assertRegex(francis_list_url, '/lists/.*')
         self.assertNotEqual(francis_list_url, edith_list_url)
 
