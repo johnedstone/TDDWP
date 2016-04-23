@@ -7,6 +7,8 @@ DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', BASE_DIR)
 
 import sys
 sys.path.append(os.path.join(REPO_DIR, 'libs'))
+
+# I believe this secrets idea came from openshift v2 django-example
 import secrets
 SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 
