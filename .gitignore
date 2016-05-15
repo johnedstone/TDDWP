@@ -65,3 +65,4 @@ target/
 # My stuff
 db.sqlite3
 .gitconfig
+static/*
