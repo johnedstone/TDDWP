@@ -61,8 +61,3 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
-
-# My stuff
-db.sqlite3
-.gitconfig
-static/*
