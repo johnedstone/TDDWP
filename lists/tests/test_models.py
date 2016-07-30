@@ -22,7 +22,7 @@ class ItemModelTest(TestCase):
             item.save()
             item.full_clean()
 
-    def test_duplicate_item_are_invalid(self):
+    def test_duplicate_items_are_invalid(self):
         list_ = List.objects.create()
         Item.objects.create(list=list_, text='bla')
         with self.assertRaises(ValidationError):
