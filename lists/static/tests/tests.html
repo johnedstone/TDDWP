@@ -23,15 +23,21 @@
 QUnit.test("errors should be hidden on keypress", function (assert){
     /* This is in list.js, but appears to be removed from
      * there when the QUnit tests are run.  So, adding here as well.
+     * There must be a better way ..
      */
     $('input').on('keypress', function () {
         $('.has-error').hide();
     });
+
     $('input').trigger('keypress');
     assert.equal($('.has-error').is(':visible'), false);
 });
 
 QUnit.test("errors not be hidden unless there is a keypress", function(assert) {
+    $('input').on('keypress', function () {
+        $('.has-error').hide();
+    });
+
     assert.equal($('.has-error').is(':visible'), true);
 });
 /*
