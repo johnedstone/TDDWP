@@ -25,21 +25,25 @@ QUnit.test("errors should be hidden on keypress", function (assert){
      * there when the QUnit tests are run.  So, adding here as well.
      * There must be a better way ..
      */
-    $('input').on('keypress', function () {
-        $('.has-error').hide();
+
+    jQuery('input').on('keypress', function () {
+        jQuery('.has-error').hide();
     });
 
-    $('input').trigger('keypress');
-    assert.equal($('.has-error').is(':visible'), false);
+    jQuery('input').trigger('keypress');
+    assert.equal(jQuery('.has-error').is(':visible'), false);
 });
 
 QUnit.test("errors not be hidden unless there is a keypress", function(assert) {
-    $('input').on('keypress', function () {
-        $('.has-error').hide();
+
+    jQuery('input').on('keypress', function () {
+        jQuery('.has-error').hide();
     });
 
-    assert.equal($('.has-error').is(':visible'), true);
+    assert.equal(jQuery('.has-error').is(':visible'), true);
 });
+
+
 /*
 QUnit.test("smoke test", function(assert) {
     assert.equal($('.has-error').is(':visible'), true);
