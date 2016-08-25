@@ -74,7 +74,7 @@
           .fail(function() { navigator.id.logout();});
         },
         onlogout: function() {
-          $.post('/account/logout')
+          $.post('/accounts/logout')
           .always(function() { window.location.reload(); });
         }
       });

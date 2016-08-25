@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 def login(request):
     print('login view', file=sys.stderr)
      # user = PersonaAuthenticationBAckend().authenticate(request.POST['assertion'])
-    user = authenticate.(assertion=request.POST['assertion'])
+    user = authenticate(assertion=request.POST['assertion'])
     if user is not None:
         auth_login(request, user)
     return redirect('/')

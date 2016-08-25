@@ -2,4 +2,5 @@ Django==1.8.11
 EasyProcess==0.2.2
 gunicorn==19.6.0
 PyVirtualDisplay==0.2
+requests==2.11.1
 selenium==2.53.5
