@@ -98,6 +98,23 @@ QUnit.test("onlogout is just placeholder", function (assert) {
         typeof onlogoutCallback, "function", "onlogout should be a function"
     );
 });
+QUnit.test("onlogin post failure should do navigator.id.logout", function (assert) {
+    mockNavigator.id.logout = sinon.mock();
+    Superlists.Accounts.initialize(mockNavigator, user, token, urls);
+    var onloginCallback = mockNavigator.id.watch.firstCall.args[0].onlogin;
+    var server = sinon.fakeServer.create();
+    server.respondWith([403, {}, "permission denied"]);
+
+    onloginCallback();
+    assert.equal(
+        mockNavigator.id.logout.called, false, 'should not call logout yet'
+    );
+
+    server.respond();
+    assert.equal(
+        mockNavigator.id.logout.called, true, 'should call logout'
+    );
+});
     </script>
 </body>
 </html>
