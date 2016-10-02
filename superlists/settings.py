@@ -88,18 +88,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    'accounts.authentication.PersonaAuthenticationBackend',
 ]
 
 
@@ -125,3 +114,5 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'superlists', 'static'),
 )
+AUTH_USER_MODEL = 'accounts.User'
+
