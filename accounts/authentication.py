@@ -14,7 +14,23 @@ class PersonaAuthenticationBackend(object):
         )
         if response.ok and response.json()['status'] == 'okay':
             email = response.json()['email']
+            # print('response email: {}'.format(email))
             try:
-                return User.objects.get(email=email)
+                user = User.objects.get(email=email)
+                # print('authentication user exists: {}'.format(user.email))
+                return user
             except User.DoesNotExist:
-                return User.objects.create(email=email)
+                user = User.objects.create(email=email)
+                # print('authentication new user: {}'.format(user.email))
+                return user
+        # else:
+        #     print('response not okay')
+
+    def get_user(self, email):
+        try:
+            user = User.objects.get(email=email)
+            #print('get_user: user exists: {}'.format(user.email))
+            return user
+        except User.DoesNotExist:
+            #print('get_user: user exists: {}'.format(None))
+            return None

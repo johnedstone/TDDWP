@@ -1,7 +1,10 @@
 import sys
 
+NOT_LOCAL = False
+
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-# from pyvirtualdisplay import Display
+if NOT_LOCAL:
+    from pyvirtualdisplay import Display
 from selenium import webdriver
 
 class FunctionalTest(StaticLiveServerTestCase):
@@ -21,16 +24,17 @@ class FunctionalTest(StaticLiveServerTestCase):
             super().tearDownClass()
 
     def setUp(self):
-        # start display
-        # self.vdisplay = Display(visible=0, size=(1024, 768))
-        # self.vdisplay.start()
+        if NOT_LOCAL:
+            self.vdisplay = Display(visible=0, size=(1024, 768))
+            self.vdisplay.start()
 
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
         self.browser.quit()
-        # self.vdisplay.stop()
+        if NOT_LOCAL:
+            self.vdisplay.stop()
 
     def check_for_row_in_list_table(self, row_text):
         table = self.browser.find_element_by_id('id_list_table')

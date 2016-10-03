@@ -11,25 +11,16 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 # comment02
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'k30q(@nxu_v*-m8j+q0)mv0m+d8g)@@ekn8x0t^^o%eh&r4^c9'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
-
 # Application definition
-
 INSTALLED_APPS = [
     # 'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +31,8 @@ INSTALLED_APPS = [
     'lists',
     'accounts',
 ]
+#if DEBUG:
+#  INSTALLED_APPS.append('debug_toolbar')
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,9 +80,9 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    'accounts.authentication.PersonaAuthenticationBackend',
-]
+#AUTH_PASSWORD_VALIDATORS = [
+#    'accounts.authentication.PersonaAuthenticationBackend',
+#]
 
 
 # Internationalization
@@ -115,4 +108,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'superlists', 'static'),
 )
 AUTH_USER_MODEL = 'accounts.User'
-
+AUTHENTICATION_BACKENDS = (
+    'accounts.authentication.PersonaAuthenticationBackend',
+)
