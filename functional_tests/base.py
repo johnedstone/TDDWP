@@ -1,6 +1,6 @@
 import sys
 
-NOT_LOCAL = False
+NOT_LOCAL = True
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 if NOT_LOCAL:
