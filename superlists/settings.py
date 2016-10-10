@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lists',
     'accounts',
+    'functional_tests',
 ]
 #if DEBUG:
 #  INSTALLED_APPS.append('debug_toolbar')

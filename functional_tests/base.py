@@ -9,6 +9,8 @@ if NOT_LOCAL:
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
+from .server_tools import reset_database
+
 
 class FunctionalTest(StaticLiveServerTestCase):
 
@@ -16,20 +18,26 @@ class FunctionalTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         for arg in sys.argv:
             if 'liveserver' in arg:
-                cls.server_url = 'http://' + arg.split('=')[1]
+                cls.server_host = arg.split('=')[1]
+                cls.server_url = 'http://' + cls.server_host
+                cls.against_staging = True
                 return
+
         super().setUpClass()
+        cls.against_staging = False
         cls.server_url = cls.live_server_url
 
     @classmethod
     def tearDownClass(cls):
-        if cls.server_url == cls.live_server_url:
+        # if cls.server_url == cls.live_server_url:
+        if not cls.against_staging:
             super().tearDownClass()
 
     def setUp(self):
-        if NOT_LOCAL:
-            self.vdisplay = Display(visible=0, size=(1024, 768))
-            self.vdisplay.start()
+        if self.against_staging:
+            reset_database(self.server_host)
+            # self.vdisplay = Display(visible=0, size=(1024, 768))
+            # self.vdisplay.start()
 
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
