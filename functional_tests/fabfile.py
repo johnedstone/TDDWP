@@ -2,7 +2,7 @@ from fabric.api import env, run
 
 def _get_base_folder(host):
     # return '~/sites/' + host
-    return '${HOME}/sites/' + host
+    return '~/sites/' + host
 
 def _get_manage_dot_py(host):
     return '{path}/virtualenv/bin/python {path}/source/manage.py'.format(
@@ -10,7 +10,7 @@ def _get_manage_dot_py(host):
     )
 
 def reset_database():
-    run('sudo {manage_py} flush --noinput'.format(
+    run('{manage_py} flush --noinput'.format(
         manage_py=_get_manage_dot_py(env.host)
     ))
 
