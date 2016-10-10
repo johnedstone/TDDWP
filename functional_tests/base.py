@@ -36,8 +36,9 @@ class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self):
         if self.against_staging:
             reset_database(self.server_host)
-            # self.vdisplay = Display(visible=0, size=(1024, 768))
-            # self.vdisplay.start()
+        if NOT_LOCAL:
+            self.vdisplay = Display(visible=0, size=(1024, 768))
+            self.vdisplay.start()
 
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
