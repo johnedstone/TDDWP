@@ -6,7 +6,6 @@ from .management.commands.create_session import create_pre_authenticated_session
 from django.contrib.auth import (
     BACKEND_SESSION_KEY, SESSION_KEY, get_user_model
 )
-# User = get_user_model()
 
 from django.contrib.sessions.backends.db import SessionStore
 
@@ -14,7 +13,6 @@ from django.contrib.sessions.backends.db import SessionStore
 class MyListsTest(FunctionalTest):
 
     def create_pre_authenticated_session(self, email):
-        # user = User.objects.create(email=email)
         if self.against_staging:
             session_key = create_session_on_server(self.server_host, email)
         else:
