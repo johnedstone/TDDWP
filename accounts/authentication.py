@@ -1,3 +1,6 @@
+import logging
+logger = logging.getLogger(__name__)
+
 import requests
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -23,8 +26,10 @@ class PersonaAuthenticationBackend(object):
                 user = User.objects.create(email=email)
                 # print('authentication new user: {}'.format(user.email))
                 return user
-        # else:
-        #     print('response not okay')
+        else:
+            logger.warning(
+                'Persona says no. json was: {}'.format(response.json())
+            )
 
     def get_user(self, email):
         try:

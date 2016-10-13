@@ -1,3 +1,5 @@
+import logging
+
 from unittest.mock import patch
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -48,6 +50,21 @@ class AuthenticateTest(TestCase):
         new_user = User.objects.get(email='a@b.com')
         self.assertEqual(found_user, new_user)
 
+    def test_logs_non_okay_responses_from_persona(self, mock_post):
+        response_json = {
+            'status': 'not okay', 'reason': 'eg, audience mismatch'
+        }
+        mock_post.return_value.ok = True
+        mock_post.return_value.json.return_value = response_json
+
+        logger = logging.getLogger('accounts.authentication')
+        with patch.object(logger, 'warning') as mock_log_warning:
+            self.backend.authenticate('an assertion')
+
+        mock_log_warning.assert_called_once_with(
+            'Persona says no. json was: {}'.format(response_json)
+        )
+
 class GetUserTest(TestCase):
 
     def test_gets_user_by_email(self):
@@ -64,3 +81,4 @@ class GetUserTest(TestCase):
         self.assertIsNone(
             backend.get_user('a@b.com')
         )
+# vim: ai et ts=4 sts=4 sw=4 nu
