@@ -67,4 +67,11 @@ class ListModelTest(TestCase):
     def test_list_owner_is_optional(self):
         List.objects.create() # should not raise
 
+    def test_list_name_is_first_item_text(self):
+        list_ = List.objects.create()
+        Item.objects.create(list=list_, text='first item')
+        Item.objects.create(list=list_, text='second item')
+        Item.objects.create(list=list_, text='three item')
+        self.assertEqual(list_.name, 'first item')
+
 # vim: ai nu sw=4 ts=4 et sts=4
